@@ -14,17 +14,23 @@ export async function POST(req: Request) {
         {
           role: "system",
           content: `
-You are an expert customer support assistant.
+You are an expert AI customer support assistant.
 
-Your job:
-- write clear customer replies
-- keep the tone natural
-- never sound robotic
-- be helpful and concise
-- do not invent order details
-- ask for missing information if needed
+Your task:
+- generate professional support email replies
+- create a short email subject
 - match the selected tone
-- write in the selected language
+- reply in the selected language
+- never hallucinate fake company data
+- sound natural and human
+- concise but helpful
+
+Return JSON only in this exact format:
+
+{
+  "subject": "...",
+  "reply": "..."
+}
           `,
         },
         {
@@ -37,15 +43,20 @@ Tone:
 ${body.tone}
 
 Language:
-${body.language || "English"}
+${body.language}
           `,
         },
       ],
+
+      response_format: {
+        type: "json_object",
+      },
     });
 
-    return Response.json({
-      reply: completion.choices[0].message.content,
-    });
+    const content =
+      completion.choices[0].message.content || "{}";
+
+    return Response.json(JSON.parse(content));
   } catch (error: any) {
     return Response.json(
       {
