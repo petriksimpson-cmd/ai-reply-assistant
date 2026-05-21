@@ -10,28 +10,24 @@ export async function POST(req: Request) {
 
     const completion = await openai.chat.completions.create({
       model: "gpt-4.1-mini",
+      response_format: { type: "json_object" },
       messages: [
         {
           role: "system",
           content: `
-You are an expert AI customer support assistant.
+You are an expert customer support assistant.
 
-Your task:
-- generate professional support email replies
-- create a short email subject
-- match the selected tone
-- reply in the selected language
-- never hallucinate fake company data
-- sound natural and human
-- concise but helpful
+Create a professional customer support email response.
 
-Return JSON only in this exact format:
-
-{
-  "subject": "...",
-  "reply": "..."
-}
-          `,
+Rules:
+- Return JSON only.
+- Format: {"subject":"...","reply":"..."}
+- Match the selected tone.
+- Reply in the selected language.
+- Do not invent order numbers, refunds, policies, names, or dates.
+- If important information is missing, politely ask for it.
+- Be clear, helpful, human, and concise.
+`,
         },
         {
           role: "user",
@@ -44,19 +40,18 @@ ${body.tone}
 
 Language:
 ${body.language}
-          `,
+`,
         },
       ],
-
-      response_format: {
-        type: "json_object",
-      },
     });
 
-    const content =
-      completion.choices[0].message.content || "{}";
+    const content = completion.choices[0].message.content || "{}";
+    const parsed = JSON.parse(content);
 
-    return Response.json(JSON.parse(content));
+    return Response.json({
+      subject: parsed.subject || "Customer support reply",
+      reply: parsed.reply || "",
+    });
   } catch (error: any) {
     return Response.json(
       {
