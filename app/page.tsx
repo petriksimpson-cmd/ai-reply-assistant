@@ -285,10 +285,10 @@ export default function Home() {
               <option value="Czech">
                 🇨🇿 Čeština
               </option>
-            
+
               <option value="German">
                 🇩🇪 Deutsch
-           </option>
+              </option>
 
             <button className="hidden md:block bg-white text-black px-5 py-2 rounded-xl font-medium">
               Dashboard
