@@ -37,28 +37,36 @@ const templates = [
 const translations: any = {
   English: {
     heroTitle: "AI customer support that works instantly.",
+
     heroSubtitle:
       "Generate professional support emails and customer replies with AI in seconds.",
 
     generator: "AI Reply Generator",
+
     templates: "Smart Templates",
 
     tone: "Reply Tone",
+
     language: "Reply Language",
 
     generate: "Generate AI Reply",
+
     generating: "Generating AI Reply...",
 
     subject: "Subject",
+
     reply: "Reply",
 
     copy: "Copy Email",
 
     history: "History",
+
     noHistory: "No generations yet.",
 
     stats1: "AI Replies",
+
     stats2: "Languages",
+
     stats3: "AI Status",
 
     live: "Live",
@@ -72,27 +80,72 @@ const translations: any = {
       "Generujte profesionální zákaznické odpovědi pomocí AI.",
 
     generator: "AI Generátor Odpovědí",
+
     templates: "Chytré Šablony",
 
     tone: "Tón Odpovědi",
+
     language: "Jazyk Odpovědi",
 
     generate: "Generovat Odpověď",
+
     generating: "Generuji Odpověď...",
 
     subject: "Předmět",
+
     reply: "Odpověď",
 
     copy: "Kopírovat Email",
 
     history: "Historie",
+
     noHistory: "Zatím žádná historie.",
 
     stats1: "AI Odpovědi",
+
     stats2: "Jazyky",
+
     stats3: "AI Status",
 
     live: "Aktivní",
+  },
+
+  German: {
+    heroTitle:
+      "KI-Kundensupport in Sekunden.",
+
+    heroSubtitle:
+      "Erstellen Sie professionelle Kundenantworten mit KI.",
+
+    generator: "KI Antwort Generator",
+
+    templates: "Intelligente Vorlagen",
+
+    tone: "Antwortstil",
+
+    language: "Antwortsprache",
+
+    generate: "KI Antwort Generieren",
+
+    generating: "Antwort wird generiert...",
+
+    subject: "Betreff",
+
+    reply: "Antwort",
+
+    copy: "E-Mail Kopieren",
+
+    history: "Verlauf",
+
+    noHistory: "Noch keine Historie.",
+
+    stats1: "KI Antworten",
+
+    stats2: "Sprachen",
+
+    stats3: "KI Status",
+
+    live: "Aktiv",
   },
 };
 
@@ -232,7 +285,10 @@ export default function Home() {
               <option value="Czech">
                 🇨🇿 Čeština
               </option>
-            </select>
+            
+              <option value="German">
+                🇩🇪 Deutsch
+           </option>
 
             <button className="hidden md:block bg-white text-black px-5 py-2 rounded-xl font-medium">
               Dashboard
