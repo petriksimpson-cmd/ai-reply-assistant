@@ -7,7 +7,7 @@ type HistoryItem = {
   message: string;
   subject: string;
   reply: string;
-  tone: string;
+ tone: string;
   language: string;
 };
 
@@ -28,15 +28,12 @@ const templates = [
     title: "Wrong Item",
     text: "I received the wrong item in my package.",
   },
-  {
-    title: "Angry Customer",
-    text: "I am very unhappy with your service and support.",
-  },
 ];
 
 const translations: any = {
   English: {
-    heroTitle: "AI customer support that works instantly.",
+    heroTitle:
+      "AI customer support that works instantly.",
 
     heroSubtitle:
       "Generate professional support emails and customer replies with AI in seconds.",
@@ -153,11 +150,13 @@ export default function Home() {
   const [message, setMessage] = useState("");
 
   const [reply, setReply] = useState("");
+
   const [subject, setSubject] = useState("");
 
   const [loading, setLoading] = useState(false);
 
-  const [tone, setTone] = useState("professional");
+  const [tone, setTone] =
+    useState("professional");
 
   const [language, setLanguage] =
     useState("English");
@@ -187,6 +186,7 @@ export default function Home() {
     setLoading(true);
 
     setReply("");
+
     setSubject("");
 
     try {
@@ -207,6 +207,7 @@ export default function Home() {
       const data = await response.json();
 
       setReply(data.reply || "");
+
       setSubject(data.subject || "");
 
       const newItem = {
@@ -289,10 +290,7 @@ export default function Home() {
               <option value="German">
                 🇩🇪 Deutsch
               </option>
-
-            <button className="hidden md:block bg-white text-black px-5 py-2 rounded-xl font-medium">
-              Dashboard
-            </button>
+            </select>
           </div>
         </div>
       </header>
@@ -315,16 +313,6 @@ export default function Home() {
           <p className="text-zinc-400 text-xl leading-9 max-w-2xl mt-10">
             {t.heroSubtitle}
           </p>
-
-          <div className="flex flex-wrap gap-4 mt-10">
-            <button className="bg-white text-black px-8 py-4 rounded-2xl font-semibold hover:scale-105 transition">
-              Start Generating
-            </button>
-
-            <button className="border border-white/10 bg-white/5 backdrop-blur-xl px-8 py-4 rounded-2xl hover:bg-white/10 transition">
-              Watch Demo
-            </button>
-          </div>
         </div>
       </section>
 
@@ -372,10 +360,6 @@ export default function Home() {
                 <h2 className="text-3xl font-bold">
                   {t.generator}
                 </h2>
-
-                <p className="text-zinc-400 mt-2">
-                  Generate support emails instantly
-                </p>
               </div>
 
               {/* TEMPLATES */}
@@ -487,16 +471,6 @@ export default function Home() {
               {(subject || reply) && (
                 <div className="mt-8 border border-white/10 bg-black/30 rounded-3xl p-6">
                   <div className="flex items-center justify-between mb-6">
-                    <div>
-                      <h2 className="text-2xl font-bold">
-                        Generated Email
-                      </h2>
-
-                      <p className="text-zinc-400 text-sm mt-1">
-                        AI generated response
-                      </p>
-                    </div>
-
                     <button
                       onClick={copyEmail}
                       className="bg-white text-black px-5 py-3 rounded-xl font-medium"
@@ -534,15 +508,9 @@ export default function Home() {
           {/* RIGHT */}
           <div className="border border-white/10 bg-white/5 backdrop-blur-2xl rounded-[32px] p-6 h-fit sticky top-28">
             <div className="flex items-center justify-between mb-6">
-              <div>
-                <h2 className="text-2xl font-bold">
-                  {t.history}
-                </h2>
-
-                <p className="text-zinc-400 mt-2">
-                  Previous generations
-                </p>
-              </div>
+              <h2 className="text-2xl font-bold">
+                {t.history}
+              </h2>
 
               <button
                 onClick={clearHistory}
